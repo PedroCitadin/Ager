@@ -21,11 +21,16 @@ public class Advogado {
   private String sobrenome;
   private String rg;
   private Date data_nasc;
-  
-  ////Dados de contato
-  private String email;
-  private String ddd;
-  private String num_telefone;
+  private int resposta;
+
+    public int getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(int resposta) {
+        this.resposta = resposta;
+    }
+
 
     public int getCod_adv() {
         return cod_adv;
@@ -77,29 +82,6 @@ public class Advogado {
         this.sobrenome = sobrenome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(String ddd) {
-        this.ddd = ddd;
-    }
-
-    public String getNum_telefone() {
-        return num_telefone;
-    }
-
-    public void setNum_telefone(String numero_telefone) {
-        this.num_telefone = numero_telefone;
-    }
 
     public String getRg() {
         return rg;
@@ -117,9 +99,36 @@ public class Advogado {
         this.data_nasc = data_nasc;
     }
 
+    
+    public boolean verificaNumero(String n){
+        boolean veri= false;
+        for (int i = 0; i < n.length(); i++) {
+            if (Character.isLetter(n.charAt(i))) {
+              veri = true;
+                break; 
+              
+              
+                
+            }
+        }
+        
+        
+        
+        return veri;
+        
+     
+      
+    }
+    
+    
+    
+    
+    
+    
+    
     @Override
     public String toString() {
-        return " Nome: "+nome + " "+sobrenome+"      CPF: "+cpf+" Codigo:"+cod_adv; 
+        return " Nome: "+nome + " "+sobrenome; 
     }
 
  

@@ -5,6 +5,7 @@
  */
 package model.view.cadastros;
 
+import javax.swing.JOptionPane;
 import model.bean.Advogado;
 import model.bean.Cliente;
 import model.bean.Endereco;
@@ -84,35 +85,35 @@ public class NovoEnderecoCliente extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        estado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MP", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", " " }));
+        estado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", " " }));
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Estado:");
 
-        jLabel8.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Rua:");
 
-        rua.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        rua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Bairro:");
 
-        bairro.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        bairro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jLabel10.setText("Numero:");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Número:");
 
-        num.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        num.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("CEP:");
 
         try {
@@ -120,17 +121,27 @@ public class NovoEnderecoCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        cep.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Cidade:");
 
-        cidade.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cidadeMouseClicked(evt);
+            }
+        });
 
-        jLabel13.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Complemento:");
 
-        comple.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        comple.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -167,7 +178,7 @@ public class NovoEnderecoCliente extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,40 +206,40 @@ public class NovoEnderecoCliente extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Novo Endereço");
 
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Cadastrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Advogado:");
+        jLabel2.setText("Cliente:");
 
-        nome.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Código:");
 
-        cod.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        cod.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cod.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -307,7 +318,13 @@ public class NovoEnderecoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_estadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       EnderecoDAO edao = new EnderecoDAO();
+        if (!rua.getText().equalsIgnoreCase(" ")) {
+            if (!bairro.getText().equalsIgnoreCase(" ")) {
+                if (!num.getText().equalsIgnoreCase(" ")) {
+                    if (!cep.getText().equalsIgnoreCase(" ")) {
+                        if (!cidade.getText().equalsIgnoreCase("")) {
+                            if (!comple.getText().equalsIgnoreCase(" ")) {
+                                EnderecoDAO edao = new EnderecoDAO();
        Endereco end = new Endereco();
        Cliente cli = new Cliente();
        cli.setCod_cliente(Integer.parseInt(cod.getText()));
@@ -321,11 +338,41 @@ public class NovoEnderecoCliente extends javax.swing.JFrame {
      end.setComplemento(comple.getText());
      edao.inserirEnderecoCliente(end);
      this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane, "O campo Complemento está em branco, digite o Complemento");
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(rootPane, "O campo Cidade está em branco, digite a Cidade");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "O campo CEP está em branco, digite o CEP");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "O campo Número está em branco, digite o Número");
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "O campo Bairro está em branco, digite o Bairro");
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "O campo Rua está em branco, digite a Rua");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.show(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepActionPerformed
+         ClienteDAO cDAO = new ClienteDAO();
+       
+       cidade.setText(cDAO.buscaPorCEP(cep.getText()));
+       cidade.disable();
+    }//GEN-LAST:event_cepActionPerformed
+
+    private void cidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cidadeMouseClicked
+      cidade.enable();
+    }//GEN-LAST:event_cidadeMouseClicked
 
     /**
      * @param args the command line arguments

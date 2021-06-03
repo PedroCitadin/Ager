@@ -17,7 +17,17 @@ public class Processo {
     private Cliente cliente;
     private String descricao;
     private String codigo;
+    private int resposta;
 
+    public int getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(int resposta) {
+        this.resposta = resposta;
+    }
+    
+    
     public String getCodigo() {
         return codigo;
     }
@@ -76,7 +86,7 @@ public class Processo {
 
     @Override
     public String toString() {
-        return "Tipo: "+acao+"      Descrição: "+descricao+"      Código de Registro:"+cod_processo;
+        return "Tipo: "+acao+"      Descrição: "+descricao;
     }
     
 }

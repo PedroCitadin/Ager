@@ -5,6 +5,7 @@
  */
 package model.view.cadastros;
 
+import java.awt.Dimension;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,8 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Advogado;
 import model.bean.Audiencia;
@@ -25,19 +28,24 @@ import model.dao.AdvogadoDAO;
 import model.dao.AudienciaDAO;
 import model.dao.ClienteDAO;
 import model.dao.ProcessoDAO;
+import model.view.TelaPricipal;
+import model.view.dados.DadosAudiencia;
 
 /**
  *
  * @author Pedro
  */
 public class CadastroAudiencia extends javax.swing.JInternalFrame {
-    
+     TelaPricipal telinha;
+    JDesktopPane jDesktopPane1;
     /**
      * Creates new form CadastroAdvogado
      */
-    public CadastroAudiencia() {
+    public CadastroAudiencia(TelaPricipal tel) {
         initComponents();
+        this.telinha = tel;
         ///Combo Box Cliente
+        processo.addItem("Selecione o Processo");
         ProcessoDAO pDAO = new ProcessoDAO();
         for (Processo p: pDAO.listarProcesso()) {
             processo.addItem(p);
@@ -101,20 +109,26 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         hora = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
+        setClosable(true);
+        setPreferredSize(new java.awt.Dimension(777, 575));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CADASTRO");
+        jLabel1.setText("CADASTRO DE AUDIÊNCIA");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Processo da Audiêcia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Processo da Audiêcia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Processo:");
+
+        processo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,38 +152,38 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Informações da Audiência", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Dados da Audiêcia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Localização", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Local da Audiêcia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        estado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MP", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", " " }));
+        estado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Estado:");
 
-        jLabel8.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Rua:");
 
-        rua.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        rua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Bairro:");
 
-        bairro.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        bairro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jLabel10.setText("Numero:");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Número:");
 
-        num.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        num.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("CEP:");
 
         try {
@@ -177,17 +191,27 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        cep.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Cidade:");
 
-        cidade.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cidadeMouseClicked(evt);
+            }
+        });
 
-        jLabel13.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Complemento:");
 
-        comple.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        comple.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -253,12 +277,12 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Data e Hora", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Data da Audiêcia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setText("Data: ");
 
-        jLabel15.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Hora:");
 
         try {
@@ -266,14 +290,14 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        data.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         try {
             hora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        hora.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        hora.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -324,21 +348,30 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Cadastrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setText("Limpar");
+        jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -354,8 +387,10 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -374,7 +409,8 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -388,7 +424,7 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -398,39 +434,88 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
     Audiencia aud = new Audiencia();
     AudienciaDAO auDAO = new AudienciaDAO();
     Processo pro = new Processo();
-    /////Pega processo///
-    String proce = String.valueOf(processo.getSelectedItem());
-    String vet[] = new String[4];
-    vet = proce.split(":");
-    pro.setCod_processo(Integer.parseInt(vet[3]));
-   ////
-   
-    aud.setRua(rua.getText());
-    aud.setBairro(bairro.getText());
-    aud.setCidade(cidade.getText());
-    aud.setComplemento(comple.getText());
-    aud.setEstado(String.valueOf(estado.getSelectedItem()));
-    aud.setNumero(Integer.parseInt(num.getText()));
-    aud.setCep(cep.getText());
-   
-////////Data
-   
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        java.sql.Date datas = null;
+        if (processo.getSelectedIndex()==0) {
+             JOptionPane.showMessageDialog(rootPane, " Campo Processo não selecionado, Selecione o processo");
         
-        try {
-            datas = new java.sql.Date(format.parse(data.getText()).getTime());
-        } catch (ParseException ex) {
+        }else{
+    /////Pega processo///
+    pro = (Processo) processo.getItemAt(processo.getSelectedIndex());
+   ////
+            if (rua.getText().equalsIgnoreCase("")) {
+                aud.setRua("Não informado");
+            }else{
+                aud.setRua(rua.getText());
+    
+            }
+            if (bairro.getText().equalsIgnoreCase("")) {
+                aud.setBairro("Não informado");
+            }else{
+    
+                 aud.setBairro(bairro.getText());
+            }
+            if (cidade.getText().equalsIgnoreCase("")) {
+                aud.setCidade("Não informado");
+            }else{
+                aud.setCidade(cidade.getText());
+            }
+            if (comple.getText().equalsIgnoreCase("")) {
+                aud.setComplemento("Não informado");
+            }else{
+                aud.setComplemento(comple.getText());
+            }
+            aud.setEstado(String.valueOf(estado.getSelectedItem()));
+            if (num.getText().equalsIgnoreCase("")) {
+                aud.setNumero(0);
+            }else{
+                aud.setNumero(Integer.parseInt(num.getText()));
+            }
+            if (cep.getText().equalsIgnoreCase("     -   ")) {
+                aud.setCep("N/I");
+            }else{
+                aud.setCep(cep.getText());
+   
+            }
+            
+////////Data
+            if (data.getText().equalsIgnoreCase("  /  /    ")) {
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            java.sql.Date datas = null;
+        
+            try {
+            datas = new java.sql.Date(format.parse("00/00/0000").getTime());
+            } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(CadastroFisica.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+            }
+            aud.setData(datas);
+            }else{
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date datas = null;
+        
+                try {
+                        datas = new java.sql.Date(format.parse(data.getText()).getTime());
+                } catch (ParseException ex) {
+                        java.util.logging.Logger.getLogger(CadastroFisica.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                aud.setData(datas);
+            }
+               
        
       
         
        
    /////////    
    ////////Hora
-            
+            if (hora.getText().equalsIgnoreCase("  :  ")) {
+                java.sql.Time horas = null;
+            String h = "00:00:00";
+            String ho[] = new String[3];
+            ho = h.split(":");
+            int hor = Integer.parseInt(ho[0]);  
+            int min = Integer.parseInt(ho[1]);
+            int sec = Integer.parseInt(ho[2]);
+            horas = new java.sql.Time(hor, min, sec);
+            aud.setHora(horas);
+            }else{
             java.sql.Time horas = null;
             String h = hora.getText()+":00";
             String ho[] = new String[3];
@@ -439,18 +524,42 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
             int min = Integer.parseInt(ho[1]);
             int sec = Integer.parseInt(ho[2]);
             horas = new java.sql.Time(hor, min, sec);
+            aud.setHora(horas);
+               
+            }
+            
  //////////////      
-       aud.setData(datas);
-       aud.setHora(horas);
+       
+       
        aud.setProcesso(pro);
+
        auDAO.inserirAudiencia(aud);
    
+            if (aud.getResposta()==0) {
+          
+            DadosAudiencia dAudi = new DadosAudiencia(aud);
+            dAudi.setVisible(true);
+            telinha.jDesktopPane1.add(dAudi);
+            dAudi.toFront();
+            }else if(aud.getResposta()==1){
+                this.dispose();
+            }else if(aud.getResposta()==2){
+                       processo.setSelectedIndex(0);
+                       rua.setText("");
+                       bairro.setText("");
+                       num.setText("");
+                       cep.setText("");
+                       cidade.setText("");
+                       estado.setSelectedIndex(0);
+                       comple.setText("");
+                       data.setText("");
+                       hora.setText("");
+            }
    
    
    
    
-   
-   
+        }
        
        
        
@@ -465,6 +574,29 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estadoActionPerformed
 
+    private void cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepActionPerformed
+       AudienciaDAO aDAO = new AudienciaDAO();
+       cidade.setText(aDAO.buscaPorCEP(cep.getText()));
+       cidade.disable();
+    }//GEN-LAST:event_cepActionPerformed
+
+    private void cidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cidadeMouseClicked
+      cidade.enable();
+    }//GEN-LAST:event_cidadeMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       processo.setSelectedIndex(0);
+       rua.setText("");
+       bairro.setText("");
+       num.setText("");
+       cep.setText("");
+       cidade.setText("");
+       estado.setSelectedIndex(0);
+       comple.setText("");
+       data.setText("");
+       hora.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairro;
@@ -476,6 +608,7 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField hora;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -498,4 +631,8 @@ public class CadastroAudiencia extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Object> processo;
     private javax.swing.JTextField rua;
     // End of variables declaration//GEN-END:variables
+public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+}
 }

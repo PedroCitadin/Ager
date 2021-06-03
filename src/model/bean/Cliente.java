@@ -19,14 +19,7 @@ public class Cliente {
     private int cod_cliente;
     private String nome;
     private Tipo_cliente tipo;
-    ///Dados de endereço
     
-    ///////////
-    ///Dados de contato
-    private String email;
-    private String num_telefone;
-    private String ddd;
-    //////////
     ///Dados Exclusivos de Pessoa Fisica
     private String est_civ;
     private String cpf;
@@ -40,6 +33,16 @@ public class Cliente {
     private String nome_fant;
     private String cnpj;
 
+    /////////
+    private int resposta; 
+
+    public int getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(int resposta) {
+        this.resposta = resposta;
+    }
     
     
     
@@ -67,29 +70,6 @@ public class Cliente {
         this.tipo = tipo;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNum_telefone() {
-        return num_telefone;
-    }
-
-    public void setNum_telefone(String numero_telefone) {
-        this.num_telefone = numero_telefone;
-    }
-
-    public String getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(String ddd) {
-        this.ddd = ddd;
-    }
 
     public String getEst_civ() {
         return est_civ;
@@ -163,7 +143,25 @@ public class Cliente {
         this.cnpj = cnpj;
     }
 
-    
+    public boolean verificaNumero(String n){
+        boolean veri= false;
+        for (int i = 0; i < n.length(); i++) {
+            if (Character.isLetter(n.charAt(i))) {
+              veri = true;
+                break; 
+              
+              
+                
+            }
+        }
+        
+        
+        
+        return veri;
+        
+     
+      
+    }
         
     
     
@@ -172,9 +170,9 @@ public class Cliente {
         
                
         if (sobrenome==null) {
-             return " Nome: "+nome + " "+nome_fant+"      CNPJ: "+cnpj+"      Codigo:"+cod_cliente;
+             return " Nome: "+nome + " "+nome_fant;
         }else{
-             return " Nome: "+nome + " "+sobrenome+"      CPF: "+cpf+"      Codigo:"+cod_cliente; 
+             return " Nome: "+nome + " "+sobrenome; 
         }
         
        

@@ -100,7 +100,65 @@ public class Endereco {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
+    public String escreveEstado(String est){
+        String estado = null;
+        if(est.equalsIgnoreCase("AC")){
+            estado = "Acre"; 
+        }else if(est.equalsIgnoreCase("AL")){
+            estado = "Alagoas";
+        }else if(est.equalsIgnoreCase("AP")){
+            estado = "Amapá";
+        }else if(est.equalsIgnoreCase("AM")){
+            estado = "Amazonas";
+        }else if(est.equalsIgnoreCase("BA")){
+            estado = "Bahia";
+        }else if(est.equalsIgnoreCase("CE")){
+            estado = "Ceará";
+        }else if(est.equalsIgnoreCase("DF")){
+            estado = "Distrito Federal";
+        }else if(est.equalsIgnoreCase("ES")){
+            estado = "Espírito Santo";
+        }else if(est.equalsIgnoreCase("GO")){
+            estado = "Goiás";
+        }else if(est.equalsIgnoreCase("MA")){
+            estado = "Maranhão";
+        }else if(est.equalsIgnoreCase("MT")){
+            estado = "Mato Grosso";
+        }else if(est.equalsIgnoreCase("MS")){
+            estado = "Mato Grosso do Sul";
+        }else if(est.equalsIgnoreCase("MG")){
+            estado = "Minas Gerais";
+        }else if(est.equalsIgnoreCase("PA")){
+            estado = "Pará";
+        }else if(est.equalsIgnoreCase("PB")){
+            estado = "Paraíba";
+        }else if(est.equalsIgnoreCase("PR")){
+            estado = "Paraná";
+        }else if(est.equalsIgnoreCase("PE")){
+            estado = "Pernambuco";
+        }else if(est.equalsIgnoreCase("PI")){
+            estado = "Piauí";
+        }else if(est.equalsIgnoreCase("RJ")){
+            estado = "Rio de Janeiro";
+        }else if(est.equalsIgnoreCase("RN")){
+            estado = "Rio Grande do Norte";
+        }else if(est.equalsIgnoreCase("RS")){
+            estado = "Rio Grande do Sul";
+        }else if(est.equalsIgnoreCase("RO")){
+            estado = "Rondônia";
+        }else if(est.equalsIgnoreCase("RR")){
+            estado = "Roraima";
+        }else if(est.equalsIgnoreCase("SC")){
+            estado = "Santa Catarina";
+        }else if(est.equalsIgnoreCase("SP")){
+            estado = "São Paulo";
+        }else if(est.equalsIgnoreCase("SE")){
+            estado = "Sergipe";
+        }else if(est.equalsIgnoreCase("TO")){
+            estado = "Tocantins";
+        }
+        return estado;
+    }
     
     
 }

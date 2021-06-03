@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,14 +24,14 @@ import model.connection.ConnectionFactory;
  * @author Pedro
  */
 public class AudienciaDAO {
-    public void inserirAudiencia(Audiencia aud){
+    public Audiencia inserirAudiencia(Audiencia aud){
        
         Connection connection = null;
         try{
             
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt = connection
-                   .prepareStatement("INSERT INTO audiencia (data, processo, rua, bairro, cidade, numero, estado, complemento, cep, hora) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                   .prepareStatement("INSERT INTO audiencia (data, processo, rua, bairro, cidade, numero, estado, complemento, cep, hora) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             
            pstmt.setDate(1, aud.getData());
            pstmt.setInt(2, aud.getProcesso().getCod_processo());
@@ -42,8 +43,17 @@ public class AudienciaDAO {
            pstmt.setString(8, aud.getComplemento());
            pstmt.setString(9, aud.getCep());
            pstmt.setTime(10, aud.getHora());  
-            pstmt.execute();
-            JOptionPane.showMessageDialog(null, "Audiência inserida.");
+           pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            int codigo = 0;
+            if (rs.next()) {
+                codigo = Integer.parseInt(rs.getString(1));
+            } 
+            
+            Object opcoes[] = {"Visualizar dados","Fechar", "Cadastrar outra audiência"};
+            aud.setCod_audiencia(codigo);
+            aud.setResposta(JOptionPane.showOptionDialog(null,"Audiência inserida, o que deseja fazer?","",1,3, null, opcoes, null));
+            
             connection.close();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Algum erro ocorreu.");
@@ -52,7 +62,7 @@ public class AudienciaDAO {
             
             
         }
-   
+   return aud;
 }
 public List<Audiencia> listarAudiencia() {
        
@@ -231,5 +241,20 @@ public List<Audiencia> pesquisarAudienciaPorData(String dat) {
             e.printStackTrace();
         }
     }
-    
+    public String buscaPorCEP(String cep){
+     Connection connection = null;
+     String cidade = null;
+     try{
+         connection = ConnectionFactory.getConnection();
+         PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM cep where cep =?;");
+         pstmt.setString(1, cep);
+         ResultSet rs = pstmt.executeQuery();
+         while(rs.next()){
+             cidade = rs.getString("cidade");
+         } 
+     }catch(SQLException e){
+         e.printStackTrace();
+     }
+     return cidade;
+ }
 }

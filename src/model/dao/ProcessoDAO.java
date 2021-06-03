@@ -25,14 +25,14 @@ import model.connection.ConnectionFactory;
  * @author Pedro
  */
 public class ProcessoDAO {
-    public void inserirProcesso(Processo pro){
+    public Processo inserirProcesso(Processo pro){
        
         Connection connection = null;
         try{
             
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt = connection
-                   .prepareStatement("INSERT INTO processo (acao, observacoes, advogado, cliente, descricao, codigo) VALUES(?, ?, ?, ?, ?, ?)");
+                   .prepareStatement("INSERT INTO processo (acao, observacoes, advogado, cliente, descricao, codigo) VALUES(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             
             pstmt.setString(1, pro.getAcao());
             pstmt.setString(2, pro.getObservacoes());
@@ -42,10 +42,14 @@ public class ProcessoDAO {
             pstmt.setString(6, pro.getCodigo());
            
             pstmt.executeUpdate();
-             
-        
-       
-            JOptionPane.showMessageDialog(null, "Processo inserido.");
+            ResultSet rs = pstmt.getGeneratedKeys();
+            int codigo = 0;
+            if (rs.next()) {
+                codigo = Integer.parseInt(rs.getString(1));
+            } 
+            Object opcoes[] = {"Visualizar dados","Fechar", "Cadastrar outro processo"};
+            pro.setCod_processo(codigo);
+            pro.setResposta(JOptionPane.showOptionDialog(null,"Processo inserido, o que deseja fazer?","",1,3, null, opcoes, null));
             connection.close();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Algum erro ocorreu.");
@@ -54,7 +58,7 @@ public class ProcessoDAO {
             
             
         }
-   
+   return pro;
 }
      public List<Processo> listarProcesso() {
        

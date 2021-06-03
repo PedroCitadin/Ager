@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[781, 505]"/>
+    </Property>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -24,7 +30,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -47,10 +53,12 @@
                       <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
                       <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel17" min="-2" pref="312" max="-2" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <Component id="jButton3" min="-2" pref="134" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton2" linkSize="1" min="-2" pref="134" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton1" linkSize="1" min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -69,18 +77,17 @@
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton2" linkSize="2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="jButton3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel17" min="-2" pref="38" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel17" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -95,11 +102,11 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Localiza&#xe7;&#xe3;o">
+                <TitledBorder justification="1" position="2" title="Endere&#xe7;o">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder bottom="3" left="3" right="3" top="3"/>
                   </Border>
-                  <Font PropertyName="font" name="Georgia" size="14" style="0"/>
+                  <Font PropertyName="font" name="Segoe UI" size="14" style="0"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -110,7 +117,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -131,7 +138,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cidade" min="-2" pref="295" max="-2" attributes="0"/>
+                              <Component id="cidade" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -143,7 +150,7 @@
                               <Component id="bairro" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="81" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -182,10 +189,10 @@
             <Component class="javax.swing.JComboBox" name="estado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="28">
+                  <StringArray count="27">
                     <StringItem index="0" value="AC"/>
                     <StringItem index="1" value="AL"/>
                     <StringItem index="2" value="AP"/>
@@ -196,7 +203,7 @@
                     <StringItem index="7" value="ES"/>
                     <StringItem index="8" value="GO"/>
                     <StringItem index="9" value="MA"/>
-                    <StringItem index="10" value="MP"/>
+                    <StringItem index="10" value="MT"/>
                     <StringItem index="11" value="MS"/>
                     <StringItem index="12" value="MG"/>
                     <StringItem index="13" value="PA"/>
@@ -213,7 +220,6 @@
                     <StringItem index="24" value="SP"/>
                     <StringItem index="25" value="SE"/>
                     <StringItem index="26" value="TO"/>
-                    <StringItem index="27" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -227,7 +233,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estado:"/>
               </Properties>
@@ -235,7 +241,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Rua:"/>
               </Properties>
@@ -243,14 +249,14 @@
             <Component class="javax.swing.JTextField" name="rua">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Bairro:"/>
               </Properties>
@@ -258,29 +264,29 @@
             <Component class="javax.swing.JTextField" name="bairro">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Numero:"/>
+                <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="num">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CEP:"/>
               </Properties>
@@ -291,14 +297,17 @@
                   <Format format="#####-###" subtype="-1" type="5"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cepActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cidade:"/>
               </Properties>
@@ -306,14 +315,17 @@
             <Component class="javax.swing.JTextField" name="cidade">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cidadeMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Complemento:"/>
               </Properties>
@@ -321,7 +333,7 @@
             <Component class="javax.swing.JTextField" name="comple">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
@@ -333,13 +345,11 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Georgia" size="14" style="1"/>
+              <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="3"/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
           <Events>
@@ -349,13 +359,11 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Georgia" size="14" style="1"/>
+              <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="3"/>
-              </Border>
+              <Border info="null"/>
             </Property>
           </Properties>
           <Events>
@@ -365,10 +373,10 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Georgia" size="24" style="0"/>
+              <Font name="Segoe UI" size="24" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="CADASTRO"/>
+            <Property name="text" type="java.lang.String" value="CADASTRO DE CLIENTE"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel6">
@@ -378,11 +386,11 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Contato">
+                <TitledBorder justification="1" position="2" title="Contato">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder bottom="3" left="3" right="3" top="3"/>
                   </Border>
-                  <Font PropertyName="font" name="Georgia" size="14" style="0"/>
+                  <Font PropertyName="font" name="Segoe UI" size="14" style="0"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -421,7 +429,7 @@
                           </Group>
                           <Component id="jLabel24" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -430,7 +438,7 @@
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="E-mail:"/>
               </Properties>
@@ -438,7 +446,7 @@
             <Component class="javax.swing.JTextField" name="emi">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
@@ -448,7 +456,7 @@
             <Component class="javax.swing.JLabel" name="jLabel24">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Telefone*:"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -459,13 +467,13 @@
             <Component class="javax.swing.JFormattedTextField" name="ddd">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="(##)" subtype="-1" type="5"/>
+                  <Format format="##" subtype="-1" type="5"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
@@ -478,7 +486,7 @@
                   <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
@@ -491,11 +499,11 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Identifica&#xe7;&#xe3;o">
+                <TitledBorder justification="1" position="2" title="Dados Pessoais">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder bottom="3" left="3" right="3" top="3"/>
                   </Border>
-                  <Font PropertyName="font" name="Georgia" size="14" style="0"/>
+                  <Font PropertyName="font" name="Segoe UI" size="14" style="0"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -514,7 +522,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="nomef" min="-2" pref="265" max="-2" attributes="0"/>
+                              <Component id="nomef" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -522,7 +530,7 @@
                               <Component id="cnpj" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="70" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -550,7 +558,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CNPJ*:"/>
               </Properties>
@@ -561,14 +569,14 @@
                   <Format format="##.###.###/####-##" subtype="-1" type="5"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nome*:"/>
               </Properties>
@@ -576,22 +584,22 @@
             <Component class="javax.swing.JTextField" name="nome">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nome Fict&#xed;cio:"/>
+                <Property name="text" type="java.lang.String" value="Nome Fantasia:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nomef">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
@@ -601,15 +609,30 @@
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Georgia" size="14" style="1"/>
+              <Font name="Segoe UI" size="14" style="1"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Os campos marcados por * s&#xe3;o obrigat&#xf3;rios"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="2"/>
+                <LineBorder/>
               </Border>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

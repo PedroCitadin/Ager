@@ -6,6 +6,7 @@
 package model.view.listas;
 
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import static java.awt.Color.white;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ import model.dao.AdvogadoDAO;
 import model.dao.ClienteDAO;
 import model.dao.ProcessoDAO;
 import model.view.TelaPricipal;
+import model.view.dados.DadosProcesso;
 
 /**
  *
@@ -25,6 +27,7 @@ import model.view.TelaPricipal;
  */
 public class ListarProcesso extends javax.swing.JInternalFrame {
      JDesktopPane jDesktopPane1;
+         int codigoprocesso;
      Advogado adv = new Advogado();
         Cliente cli = new Cliente();
         Processo pro = new Processo();
@@ -35,27 +38,11 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     public ListarProcesso(TelaPricipal tel) {
         initComponents();
         this.telinha = tel;
-       advogado.disable();
-       cliente.disable();
-       acao.disable();
-       obs.disable();
-       descri.disable();
-       clint.setVisible(false);
-       advo.setVisible(false);
-       cod.disable();
-       salv.setVisible(false);
-       pesqSele.setVisible(false);
-       pesqSele.disable();
-        ClienteDAO cDAO = new ClienteDAO();
-        for (Cliente c: cDAO.listarCliente()) {
-            
-            clint.addItem(c);
-        }
-        AdvogadoDAO aDAO = new AdvogadoDAO();
-        for (Advogado a: aDAO.listarAdvogado()) {
-            advo.addItem(a);
-            
-        } 
+       pesqTxt.setEditable(false);
+      pesqSele.setVisible(false);
+      
+       
+      
         
     DefaultTableModel dtm = (DefaultTableModel) tabelaProcessos.getModel();
         ProcessoDAO pDAO = new ProcessoDAO();
@@ -74,25 +61,9 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     public ListarProcesso() {
         initComponents();
         
-       advogado.disable();
-       cliente.disable();
-       acao.disable();
-       obs.disable();
-       descri.disable();
-       clint.setVisible(false);
-       advo.setVisible(false);
-       cod.disable();
-       salv.setVisible(false);
-        ClienteDAO cDAO = new ClienteDAO();
-        for (Cliente c: cDAO.listarCliente()) {
-            
-            clint.addItem(c);
-        }
-        AdvogadoDAO aDAO = new AdvogadoDAO();
-        for (Advogado a: aDAO.listarAdvogado()) {
-            advo.addItem(a);
-            
-        } 
+       
+      
+       
         
     DefaultTableModel dtm = (DefaultTableModel) tabelaProcessos.getModel();
         ProcessoDAO pDAO = new ProcessoDAO();
@@ -162,6 +133,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         tele1 = new javax.swing.JTextField();
         ddd1 = new javax.swing.JTextField();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProcessos = new javax.swing.JTable();
@@ -171,22 +143,13 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        advogado = new javax.swing.JTextField();
-        cliente = new javax.swing.JTextField();
-        advo = new javax.swing.JComboBox<>();
-        clint = new javax.swing.JComboBox<>();
+        advogado = new javax.swing.JLabel();
+        cliente = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        acao = new javax.swing.JTextField();
-        descri = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        obs = new javax.swing.JTextArea();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        cod = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        salv = new javax.swing.JButton();
+        acao = new javax.swing.JLabel();
+        descri = new javax.swing.JLabel();
         pesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         bot1 = new javax.swing.JRadioButton();
@@ -195,6 +158,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         bot4 = new javax.swing.JRadioButton();
         pesqTxt = new javax.swing.JTextField();
         pesqSele = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Dados do Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 1, 18))); // NOI18N
@@ -478,8 +442,11 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel2.setText("jLabel2");
+
+        setClosable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(1130, 660));
+        setPreferredSize(new java.awt.Dimension(1130, 470));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -499,18 +466,18 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabelaProcessos);
 
-        jButton2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("Excluir");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setText("Cancelar");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -518,34 +485,22 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Dados do Processo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 1, 18))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Dados do Processo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Envolvidos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Envolvidos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Advogado:");
 
-        jLabel4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Cliente:");
 
-        advogado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        advogado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         advogado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        advogado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        advogado.setPreferredSize(new java.awt.Dimension(74, 24));
 
-        cliente.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        cliente.setPreferredSize(new java.awt.Dimension(74, 24));
-
-        advo.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        advo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o Advogado" }));
-        advo.setPreferredSize(new java.awt.Dimension(500, 24));
-
-        clint.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        clint.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o Cliente" }));
-        clint.setPreferredSize(new java.awt.Dimension(56, 24));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -557,15 +512,11 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cliente, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
+                        .addComponent(cliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(advogado, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(advo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clint, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(advogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -574,51 +525,28 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(advogado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(advo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(advogado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(70, 70, 70))
+                    .addComponent(cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Informações do Processo", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 1, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Informações do Processo", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        jLabel18.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setText("Ação:");
 
-        jLabel19.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("Descrição:");
 
-        acao.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        acao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         acao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        acao.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        acao.setPreferredSize(new java.awt.Dimension(2, 24));
 
-        descri.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        descri.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         descri.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        descri.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        descri.setPreferredSize(new java.awt.Dimension(2, 24));
-
-        obs.setColumns(20);
-        obs.setRows(5);
-        obs.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        obs.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jScrollPane2.setViewportView(obs);
-
-        jLabel29.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jLabel29.setText("Obsevações:");
-
-        jLabel30.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jLabel30.setText("Código do Processo:");
-
-        cod.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        cod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cod.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        cod.setPreferredSize(new java.awt.Dimension(2, 24));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -627,7 +555,6 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -635,35 +562,20 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(descri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(descri, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(acao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(acao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(descri, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -679,31 +591,13 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton4.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jButton4.setText("Editar");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        salv.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        salv.setText("Salvar");
-        salv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        salv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvActionPerformed(evt);
-            }
-        });
-
-        pesquisar.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        pesquisar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pesquisar.setText("Pesquisar");
-        pesquisar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        pesquisar.setBorder(null);
         pesquisar.setPreferredSize(new java.awt.Dimension(77, 39));
         pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -711,11 +605,12 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Pesquisar por:");
 
         bot1.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bot1);
+        bot1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bot1.setText("Advogado");
         bot1.setIconTextGap(1);
         bot1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -731,6 +626,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
 
         bot2.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bot2);
+        bot2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bot2.setText("Cliente");
         bot2.setIconTextGap(2);
         bot2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -741,6 +637,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
 
         bot3.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bot3);
+        bot3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bot3.setText("Ação");
         bot3.setIconTextGap(3);
         bot3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -751,6 +648,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
 
         bot4.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(bot4);
+        bot4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bot4.setText("Descrição");
         bot4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -758,8 +656,8 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
             }
         });
 
-        pesqTxt.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        pesqTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Pesquisar", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 1, 14))); // NOI18N
+        pesqTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pesqTxt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Pesquisar", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         pesqTxt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         pesqTxt.setPreferredSize(new java.awt.Dimension(74, 39));
         pesqTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -768,9 +666,18 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
             }
         });
 
-        pesqSele.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        pesqSele.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pesqSele.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
         pesqSele.setPreferredSize(new java.awt.Dimension(500, 39));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Mais Informações");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -779,11 +686,10 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(pesqTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(pesqTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pesqSele, 0, 1, Short.MAX_VALUE)
+                        .addComponent(pesqSele, 0, 180, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -794,42 +700,47 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                         .addComponent(bot3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bot4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(salv, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)))))
+                                .addComponent(jButton2))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3, salv});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(salv)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(pesqTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addGap(98, 98, 98)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pesqSele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(pesqTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -838,14 +749,13 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
                             .addComponent(bot3)
                             .addComponent(bot4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pesqSele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton2, jButton3, salv});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {pesqTxt, pesquisar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -855,7 +765,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -867,7 +777,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
          ProcessoDAO pDAO = new ProcessoDAO();
        if(pDAO.verificaExclusao(codigoProcesso)){
            if (JOptionPane.showConfirmDialog(null, "O processo já possui uma audiência marcada, exclua a audiência primeiro para exlcuir o processo, deseja ir para audiências?")==0) {
-               ListarAudiencia aud = new ListarAudiencia();
+               ListarAudiencia aud = new ListarAudiencia(this.telinha);
                this.telinha.jDesktopPane1.add(aud);
                aud.show();
                aud.toFront();
@@ -897,82 +807,9 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //Mostra o cliente já selecionado
-        boolean v= true;
-        int id=1;
-        int c=0;
-            do{
-             
-            String op =String.valueOf(clint.getItemAt(id));
-            
-            String ente[] = new String[4];
-            ente = op.split(":");
-            
-            
-          
-            if (Integer.parseInt(ente[3])==cli.getCod_cliente()){
-                c=id;
-                break;
-                
-            }
-            id++;
-        }while(v);
-         //Mostra o advogado já selecionado
-         boolean a= true;
-        int ip=1;
-        int f=0;
-            do{
-             
-            String op =String.valueOf(advo.getItemAt(ip));
-            
-            String ente[] = new String[5];
-            ente = op.split(":");
-                
-            
-          
-            if (Integer.parseInt(ente[4])==adv.getCod_adv()){
-                f=ip;
-                break;
-                
-            }
-            ip++;
-        }while(a);
-
-
-
-
-        acao.enable();
-        obs.enable();
-        descri.enable();
-        advogado.setVisible(false);
-        cliente.setVisible(false);
-        clint.setSelectedIndex(c);
-        advo.setSelectedIndex(f);
-        clint.setVisible(true);
-       advo.setVisible(true);
-       cod.enable();
-       salv.setVisible(true);
-
-
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void tabelaProcessosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProcessosMouseClicked
-        advogado.disable();
-       cliente.disable();
-       acao.disable();
-       obs.disable();
-       descri.disable();
-       advogado.setVisible(true);
-       cliente.setVisible(true); 
-       clint.setVisible(false);
-       advo.setVisible(false); 
-       cod.disable();
-       salv.setVisible(false); 
+       
+       
         
         
         
@@ -995,10 +832,10 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         }
         advogado.setText(adv.getNome()+" "+adv.getSobrenome());
         descri.setText(pro.getDescricao());
-        obs.setText(pro.getObservacoes());
-        acao.setText(pro.getAcao());
-        cod.setText(pro.getCodigo());
         
+        acao.setText(pro.getAcao());
+        
+        codigoprocesso = codigoProcesso;
         
         
         
@@ -1006,49 +843,6 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_tabelaProcessosMouseClicked
-
-    private void salvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvActionPerformed
-        Processo pro = new Processo();
-        Advogado adv = new Advogado();
-        Cliente cli = new Cliente();
-        ProcessoDAO pDAO = new ProcessoDAO();
-        int linha = tabelaProcessos.getSelectedRow();
-        int codigoPro = (int) tabelaProcessos.getValueAt(linha, 0);
-        pro.setCod_processo(codigoPro);
-        pro.setDescricao(descri.getText());
-        pro.setObservacoes(obs.getText());
-        pro.setAcao(acao.getText());
-        pro.setCodigo(cod.getText());
-        ////////Pegar opção de cliente
-       String op = String.valueOf(clint.getSelectedItem());
-       String ente[] = new String[4];
-       ente = op.split(":");
-       //////////// 
-       ///////Pegar opção de advogado
-       String opa = String.valueOf(advo.getSelectedItem());
-       String vogado[] = new String[5];
-       vogado = opa.split(":");
-       ////////////
-       adv.setCod_adv(Integer.parseInt(vogado[4]));
-       cli.setCod_cliente(Integer.parseInt(ente[3])); 
-       pro.setAdvogado(adv);
-       pro.setCliente(cli);
-       pDAO.editarProcesso(pro);
-        
-        DefaultTableModel dtm = (DefaultTableModel) tabelaProcessos.getModel();
-        dtm.setNumRows(0);
-        for (Processo proc : pDAO.listarProcesso()) {
-            dtm.addRow(new Object[]{
-                proc.getCod_processo(),
-                proc.getAcao(),
-                proc.getDescricao()
-                });
-        }
-        
-        
-        
-        
-    }//GEN-LAST:event_salvActionPerformed
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         if (bot1.isSelected()) {
@@ -1106,7 +900,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     private void bot1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bot1MouseClicked
      pesqSele.removeAllItems();
      pesqTxt.setVisible(false);
-     pesqTxt.disable();
+      pesqTxt.setEditable(false);
      pesqSele.setVisible(true);
      pesqSele.enable();
      pesqSele.addItem("Selecione o Advogado");
@@ -1124,7 +918,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     private void bot2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bot2MouseClicked
      pesqSele.removeAllItems();
      pesqTxt.setVisible(false);
-     pesqTxt.disable();
+     pesqTxt.setEditable(false);
      pesqSele.setVisible(true);
      pesqSele.enable();
      pesqSele.addItem("Selecione o Cliente");
@@ -1139,14 +933,14 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
        pesqSele.setVisible(false);
        pesqSele.disable();
        pesqTxt.setVisible(true);
-       pesqTxt.enable();
+       pesqTxt.setEditable(true);
     }//GEN-LAST:event_bot3MouseClicked
 
     private void bot4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bot4MouseClicked
        pesqSele.setVisible(false);
        pesqSele.disable();
        pesqTxt.setVisible(true);
-       pesqTxt.enable();
+       pesqTxt.setEditable(true);
     }//GEN-LAST:event_bot4MouseClicked
 
     private void pesqTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesqTxtActionPerformed
@@ -1175,11 +969,20 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_pesqTxtActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Processo p = new Processo();
+        p.setCod_processo(codigoprocesso);
+        DadosProcesso dProc = new DadosProcesso(p);
+        dProc.setVisible(true);
+        telinha.jDesktopPane1.add(dProc);
+        dProc.toFront();
+        dProc.setPosicao();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField acao;
-    private javax.swing.JComboBox<Object> advo;
-    private javax.swing.JTextField advogado;
+    private javax.swing.JLabel acao;
+    private javax.swing.JLabel advogado;
     private javax.swing.JTextField bairro1;
     private javax.swing.JRadioButton bot1;
     private javax.swing.JRadioButton bot2;
@@ -1188,21 +991,20 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField cep1;
     private javax.swing.JTextField cidade1;
-    private javax.swing.JTextField cliente;
-    private javax.swing.JComboBox<Object> clint;
+    private javax.swing.JLabel cliente;
     private javax.swing.JFormattedTextField cnpj1;
-    private javax.swing.JTextField cod;
     private javax.swing.JTextField comple1;
     private javax.swing.JTextField ddd1;
-    private javax.swing.JTextField descri;
+    private javax.swing.JLabel descri;
     private javax.swing.JTextField email1;
     private javax.swing.JTextField estado1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1212,9 +1014,7 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -1228,16 +1028,13 @@ public class ListarProcesso extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nome1;
     private javax.swing.JTextField nomef1;
     private javax.swing.JTextField num1;
-    private javax.swing.JTextArea obs;
     private javax.swing.JComboBox<Object> pesqSele;
     private javax.swing.JTextField pesqTxt;
     private javax.swing.JButton pesquisar;
     private javax.swing.JTextField rua1;
-    private javax.swing.JButton salv;
     private javax.swing.JTable tabelaProcessos;
     private javax.swing.JTextField tele1;
     // End of variables declaration//GEN-END:variables

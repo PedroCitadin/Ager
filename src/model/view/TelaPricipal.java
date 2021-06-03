@@ -284,39 +284,43 @@ public class TelaPricipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       CadastroProcesso cad = new CadastroProcesso();
+       CadastroProcesso cad = new CadastroProcesso(this);
        cad.show();
+       cad.setVisible(true);
        jDesktopPane1.add(cad);
+       cad.setPosicao();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
                     //Cadastrar Fisica
-       CadastroFisica cad = new CadastroFisica();
+       CadastroFisica cad = new CadastroFisica(this);
        cad.show();
        
        jDesktopPane1.add(cad);
-                    
+       cad.setPosicao();
                     
                     
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
        //Cadastrar Juridica
-        CadastroJuridica cod = new CadastroJuridica();
+        CadastroJuridica cod = new CadastroJuridica(this);
        cod.show();
        jDesktopPane1.add(cod);
+       cod.setPosicao();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
         
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         ListarPessoaFisica cod = new ListarPessoaFisica(this);
         cod.show();
-       jDesktopPane1.add(cod);      
+        jDesktopPane1.add(cod);      
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-      CadastroAdvogado cod = new CadastroAdvogado();
+      CadastroAdvogado cod = new CadastroAdvogado(this);
        cod.show();
        jDesktopPane1.add(cod);
+       cod.setPosicao();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -326,7 +330,7 @@ public class TelaPricipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        ListarPessoaJuridica cod = new ListarPessoaJuridica();
+        ListarPessoaJuridica cod = new ListarPessoaJuridica(this);
         cod.show();
        jDesktopPane1.add(cod);    
     }//GEN-LAST:event_jMenuItem11ActionPerformed
@@ -338,13 +342,14 @@ public class TelaPricipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-       CadastroAudiencia cad = new CadastroAudiencia();
+       CadastroAudiencia cad = new CadastroAudiencia(this);
        cad.show();
        jDesktopPane1.add(cad);
+       cad.setPosicao();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       ListarAudiencia cad = new ListarAudiencia();
+       ListarAudiencia cad = new ListarAudiencia(this);
        cad.show();
        jDesktopPane1.add(cad);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -354,7 +359,11 @@ public class TelaPricipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu7ActionPerformed
 
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
-      this.dispose();
+        if (JOptionPane.showConfirmDialog(null, "Você deseja realmente sair?")==0) {
+            this.dispose();
+        }
+  
+        
     }//GEN-LAST:event_jMenu7MouseClicked
 
     /**

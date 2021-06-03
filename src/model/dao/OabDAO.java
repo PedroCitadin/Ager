@@ -54,22 +54,27 @@ public class OabDAO {
        
         Connection connection = null;
         List<Oab> coab = new ArrayList<>();
-
+        Advogado advo = new Advogado();
+        advo = oab.getCod_advogado();
         try {
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM oab WHERE cod_advogado=? ");
             
-            
-            pstmt.setInt(1, oab.getCod_advogado().getCod_adv());
+           
+            pstmt.setInt(1, advo.getCod_adv());
             ResultSet rs = pstmt.executeQuery();
+            
             while (rs.next()) {
-               
+               Oab ob = new Oab();
                 Advogado adv = new Advogado();
-                oab.setCod_cod_oab(rs.getInt("cod_cod_oab"));
-                oab.setCodigo(rs.getString("codigo"));
+                ob.setCod_cod_oab(rs.getInt("cod_cod_oab"));
+                ob.setCodigo(rs.getString("codigo"));
+                
                 adv.setCod_adv(rs.getInt("cod_advogado"));
-                oab.setCod_advogado(adv);
+                ob.setCod_advogado(adv);
+                coab.add(ob);
             }
+            
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,14 +103,14 @@ public class OabDAO {
         try {
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt = connection
-                    .prepareStatement("UPDATE oab set codigo=?, cod_advogado where cod_cod_oab=?");
+                    .prepareStatement("UPDATE oab set codigo=?, cod_advogado=? where cod_cod_oab=?");
             pstmt.setString(1, oab.getCodigo());
             pstmt.setInt(2, oab.getCod_advogado().getCod_adv());
             pstmt.setInt(3, oab.getCod_cod_oab());
            
             
             pstmt.execute();
-            JOptionPane.showMessageDialog(null, "Processo alterado.");
+            JOptionPane.showMessageDialog(null, "Código OAB alterado.");
             connection.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Algum erro ocorreu.");

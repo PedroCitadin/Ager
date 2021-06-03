@@ -5,24 +5,32 @@
  */
 package model.view.cadastros;
 
+import java.awt.Dimension;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import model.bean.Cliente;
+import model.bean.Email;
 import model.bean.Endereco;
 import model.bean.Sexo;
+import model.bean.Telefone;
 import model.bean.Tipo_cliente;
 import model.dao.ClienteDAO;
+import model.view.TelaPricipal;
+import model.view.dados.DadosPessoaFisica;
 
 /**
  *
  * @author Pedro
  */
 public class CadastroJuridica extends javax.swing.JInternalFrame {
-
+    TelaPricipal telinha;
+    JDesktopPane jDesktopPane1;
     /**
      * Creates new form CadastroJuridica
      */
-    public CadastroJuridica() {
+    public CadastroJuridica(TelaPricipal tel) {
         initComponents();
+        this.telinha = tel;
     }
 
     /**
@@ -67,39 +75,43 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         nomef = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+
+        setClosable(true);
+        setPreferredSize(new java.awt.Dimension(781, 505));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Localização", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Endereço", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        estado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MP", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", " " }));
+        estado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Estado:");
 
-        jLabel8.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Rua:");
 
-        rua.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        rua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Bairro:");
 
-        bairro.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        bairro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jLabel10.setText("Numero:");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Número:");
 
-        num.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        num.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("CEP:");
 
         try {
@@ -107,17 +119,27 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        cep.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Cidade:");
 
-        cidade.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cidadeMouseClicked(evt);
+            }
+        });
 
-        jLabel13.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Complemento:");
 
-        comple.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        comple.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 compleActionPerformed(evt);
@@ -130,7 +152,7 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -150,7 +172,7 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cidade))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,7 +181,7 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bairro)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,52 +209,52 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Cadastrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CADASTRO");
+        jLabel1.setText("CADASTRO DE CLIENTE");
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Contato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Contato", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        jLabel19.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("E-mail:");
 
-        emi.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        emi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         emi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emiActionPerformed(evt);
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setText("Telefone*:");
         jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         try {
-            ddd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
+            ddd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         ddd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ddd.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        ddd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         try {
             numtel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
@@ -240,7 +262,7 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         numtel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        numtel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        numtel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -271,13 +293,13 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(emi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Identificação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Georgia", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)), "Dados Pessoais", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("CNPJ*:");
 
         try {
@@ -285,17 +307,17 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        cnpj.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        cnpj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Nome*:");
 
-        nome.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jLabel3.setText("Nome Fictício:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Nome Fantasia:");
 
-        nomef.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nomef.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nomef.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -312,12 +334,12 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nomef, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nomef))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,9 +357,19 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel17.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Os campos marcados por * são obrigatórios");
-        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setText("Limpar");
+        jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -351,10 +383,12 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -372,15 +406,15 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -394,7 +428,7 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -426,7 +460,8 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
          JOptionPane.showMessageDialog(rootPane, "Campo telefone incompleto, digite o número");
      }else{
           Cliente cli = new Cliente();
-  
+          Telefone tel = new Telefone();
+          Email em = new Email();
   Endereco end = new Endereco();
    Tipo_cliente tip = new Tipo_cliente();
 /////////     
@@ -435,8 +470,13 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
    cli.setNome_fant(nomef.getText());
    cli.setCnpj(cnpj.getText());
      ////////////////Endereços/////////
-    end.setNumero(Integer.parseInt(num.getText()));
-     end.setBairro(bairro.getText());
+            if (!num.getText().equalsIgnoreCase("")) {
+                end.setNumero(Integer.parseInt(num.getText()));
+    
+            }
+ 
+     
+    end.setBairro(bairro.getText());
      end.setCidade(cidade.getText());
       end.setEstado(String.valueOf(estado.getSelectedItem()));
         end.setRua(rua.getText());
@@ -445,11 +485,38 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
 /////////////////  
     
     
-    cli.setEmail(emi.getText());
-    cli.setDdd(ddd.getText());
-    cli.setNum_telefone(numtel.getText());
+    em.setDescricao(emi.getText());
+    tel.setDdd(ddd.getText());
+    tel.setNumero(numtel.getText());
     cli.setTipo(tip);
-    dao.inserirPessoaJuridica(cli, end);
+    dao.inserirPessoaJuridica(cli, end, tel, em);
+    
+    
+        if (cli.getResposta()==0) {
+                DadosPessoaFisica dFisica = new DadosPessoaFisica(cli);
+                dFisica.setVisible(true);
+                telinha.jDesktopPane1.add(dFisica);
+                dFisica.toFront();
+                this.dispose();
+            }else if (cli.getResposta()==1) {
+                this.dispose();
+            }else if(cli.getResposta()==2){
+                nome.setText("");
+             
+                rua.setText("");
+                bairro.setText("");
+                num.setText("");
+                cep.setText("");
+                cidade.setText("");
+                estado.setSelectedIndex(0);
+                comple.setText("");
+                emi.setText("");
+                ddd.setText("");
+                numtel.setText("");
+                
+                
+            }
+    
      }
         
         
@@ -472,6 +539,33 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emiActionPerformed
 
+    private void cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepActionPerformed
+       ClienteDAO cDAO = new ClienteDAO();
+       
+       cidade.setText(cDAO.buscaPorCEP(cep.getText()));
+       cidade.disable();
+    }//GEN-LAST:event_cepActionPerformed
+
+    private void cidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cidadeMouseClicked
+       cidade.enable();
+    }//GEN-LAST:event_cidadeMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       nome.setText("");
+       nomef.setText("");
+       cnpj.setText("");
+       rua.setText("");
+       bairro.setText("");
+       num.setText("");
+       cep.setText("");
+       cidade.setText("");
+       estado.setSelectedIndex(0);
+       comple.setText("");
+       emi.setText("");
+       ddd.setText("");
+       numtel.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairro;
@@ -484,6 +578,7 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> estado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -508,4 +603,8 @@ public class CadastroJuridica extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField numtel;
     private javax.swing.JTextField rua;
     // End of variables declaration//GEN-END:variables
+public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+}
 }

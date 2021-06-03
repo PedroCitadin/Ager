@@ -16,8 +16,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.bean.Advogado;
 import model.bean.Cliente;
+import model.bean.Email;
 import model.bean.Endereco;
 import model.bean.Sexo;
+import model.bean.Telefone;
 import model.bean.Tipo_cliente;
 
 
@@ -28,34 +30,36 @@ import model.bean.Tipo_cliente;
  * @author Pedro
  */
 public class ClienteDAO {
-    public void inserirPessoaFisica(Cliente cliente, Endereco end){
+    public Cliente inserirPessoaFisica(Cliente cliente, Endereco end, Telefone tel, Email emi){
        
         Connection connection = null;
         try{
            connection = ConnectionFactory.getConnection();
             
                            PreparedStatement pstmt = connection
-                   .prepareStatement("INSERT INTO cliente (nome, tipo, email, ddd, num_telefone, est_Civ, cpf, sobrenome, sexo, rg, Profissao, data_nasc) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                   .prepareStatement("INSERT INTO cliente (nome, tipo, est_Civ, cpf, sobrenome, sexo, rg, Profissao, data_nasc) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
                            
                          
-            PreparedStatement pstm = connection
+                            PreparedStatement pstm = connection
                    .prepareStatement("INSERT INTO endereco(numero, cep, cidade, estado, rua, bairro, complemento, cod_end_cli)VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             
-            
+                            PreparedStatement ps = connection
+                   .prepareStatement("INSERT INTO telefone(ddd, numero, cliente)VALUES(?, ?, ?)");
+                           
+                           PreparedStatement ps2 = connection
+                   .prepareStatement("INSERT INTO email(descricao, cliente)VALUES(?, ?)");
+                            
            pstmt.setString(1, cliente.getNome());
            pstmt.setInt(2, cliente.getTipo().getCod_tipo());
            
-           pstmt.setString(3, cliente.getEmail());
-           pstmt.setString(4, cliente.getDdd());
-           pstmt.setString(5, cliente.getNum_telefone());
-           pstmt.setString(6, cliente.getEst_civ());
-           pstmt.setString(7, cliente.getCpf());
-           pstmt.setString(8, cliente.getSobrenome());
-           pstmt.setInt(9, cliente.getSexo().getId());
+           pstmt.setString(3, cliente.getEst_civ());
+           pstmt.setString(4, cliente.getCpf());
+           pstmt.setString(5, cliente.getSobrenome());
+           pstmt.setInt(6, cliente.getSexo().getId());
          
-           pstmt.setString(10, cliente.getRg());
-           pstmt.setString(11, cliente.getProfissao());
-           pstmt.setDate(12, cliente.getData_nasc());
+           pstmt.setString(7, cliente.getRg());
+           pstmt.setString(8, cliente.getProfissao());
+           pstmt.setDate(9, cliente.getData_nasc());
            pstmt.executeUpdate();
           
             /////endereço/////
@@ -73,10 +77,26 @@ public class ClienteDAO {
             pstm.setString(7, end.getComplemento());
             pstm.setInt(8, codigo);
             
-            pstm.execute();
+           if ((!end.getCep().equalsIgnoreCase(""))&&(!end.getCidade().equalsIgnoreCase(""))&&(!end.getRua().equalsIgnoreCase(""))&&(!end.getBairro().equalsIgnoreCase(""))&&(!end.getComplemento().equalsIgnoreCase(""))) {
+                pstm.execute();
+            }
+           /////////////////
+           ps.setString(1, tel.getDdd());
+           ps.setString(2, tel.getNumero());
+           ps.setInt(3, codigo);
+           ps.execute();
+           ///////////
+           ps2.setString(1, emi.getDescricao());
+           ps2.setInt(2, codigo);
+          if (!emi.getDescricao().equalsIgnoreCase("")) {
+                ps2.execute();
+            }
+            
+            Object opcoes[] = {"Visualizar dados","Fechar", "Cadastrar outro cliente"};
+            cliente.setCod_cliente(codigo);
+            cliente.setResposta(JOptionPane.showOptionDialog(null,"Cliente inserido, o que deseja fazer?","",1,3, null, opcoes, null));
            
-            JOptionPane.showMessageDialog(null, "Pessoa Fisica inserida.");
-            connection.close();
+          connection.close();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Algum erro ocorreu.");
             e.printStackTrace();
@@ -84,32 +104,35 @@ public class ClienteDAO {
             
             
         }
-   
+   return cliente;
 }
- public void inserirPessoaJuridica(Cliente cliente, Endereco end){
-       //"INSERT INTO cliente (nome, tipo, rua, numero, bairro, cidade, estado, cep, complemento, email, ddd, num_telefone, nome_fant, cnpj) VALUES(?, ?, ?, ?, ?, ?, ?)"    
-          
+ public void inserirPessoaJuridica(Cliente cliente, Endereco end, Telefone tel, Email emi){
+       
+     
         Connection connection = null;
         try{
         connection = ConnectionFactory.getConnection();
             
                            PreparedStatement pstmt = connection
-                   .prepareStatement("INSERT INTO cliente (nome, tipo, email, ddd, num_telefone, nome_fant, cnpj) VALUES(?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                   .prepareStatement("INSERT INTO cliente (nome, tipo, nome_fant, cnpj) VALUES(?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
                            
                     PreparedStatement pstm = connection
                    .prepareStatement("INSERT INTO endereco(numero, cep, cidade, estado, rua, bairro, complemento, cod_end_cli)VALUES(?, ?, ?, ?, ?, ?, ?, ?)");     
             
-           
+                    
+                            PreparedStatement ps = connection
+                   .prepareStatement("INSERT INTO telefone(ddd, numero, cliente)VALUES(?, ?, ?)");
+                           
+                           PreparedStatement ps2 = connection
+                   .prepareStatement("INSERT INTO email(descricao, cliente)VALUES(?, ?)");
+                            
                 
             
            pstmt.setString(1, cliente.getNome());
            pstmt.setInt(2, cliente.getTipo().getCod_tipo());
            
-           pstmt.setString(3, cliente.getEmail());
-           pstmt.setString(4, cliente.getDdd());
-           pstmt.setString(5, cliente.getNum_telefone());
-           pstmt.setString(6, cliente.getNome_fant());
-           pstmt.setString(7, cliente.getCnpj());
+           pstmt.setString(3, cliente.getNome_fant());
+           pstmt.setString(4, cliente.getCnpj());
            pstmt.executeUpdate();
            
            /////endereço/////
@@ -126,11 +149,26 @@ public class ClienteDAO {
             pstm.setString(6, end.getBairro());
             pstm.setString(7, end.getComplemento());
             pstm.setInt(8, codigo);
+            if ((!end.getCep().equalsIgnoreCase(""))&&(!end.getCidade().equalsIgnoreCase(""))&&(!end.getRua().equalsIgnoreCase(""))&&(!end.getBairro().equalsIgnoreCase(""))&&(!end.getComplemento().equalsIgnoreCase(""))) {
+                pstm.execute();
+            }
             
-            pstm.execute();
             
-            JOptionPane.showMessageDialog(null, "Pessoa Jurídica inserida.");
-            connection.close();
+            ps.setString(1, tel.getDdd());
+           ps.setString(2, tel.getNumero());
+           ps.setInt(3, codigo);
+           ps.execute();
+           ///////////
+           ps2.setString(1, emi.getDescricao());
+           ps2.setInt(2, codigo);
+           if (!emi.getDescricao().equalsIgnoreCase("")) {
+                ps2.execute();
+            }
+           Object opcoes[] = {"Visualizar dados","Fechar", "Cadastrar outro cliente"};
+            cliente.setCod_cliente(codigo);
+            cliente.setResposta(JOptionPane.showOptionDialog(null,"Cliente inserido, o que deseja fazer?","",1,3, null, opcoes, null));
+           
+           connection.close();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Algum erro ocorreu.");
             e.printStackTrace();
@@ -474,9 +512,6 @@ public Cliente buscarFisica(Cliente cli ) {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 cli.setCod_cliente(rs.getInt("cod_cliente"));
-                cli.setEmail(rs.getString("email"));
-                cli.setDdd(rs.getString("ddd"));
-                cli.setNum_telefone(rs.getString("num_telefone"));
                 cli.setEst_civ(rs.getString("est_civ"));
                 cli.setCpf(rs.getString("cpf"));
                 cli.setProfissao(rs.getString("profissao"));
@@ -509,9 +544,6 @@ public Cliente buscarFisica(Cliente cli ) {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 cli.setCod_cliente(rs.getInt("cod_cliente"));
-                cli.setEmail(rs.getString("email"));
-                cli.setDdd(rs.getString("ddd"));
-                cli.setNum_telefone(rs.getString("num_telefone"));
                 cli.setCnpj(rs.getString("cnpj"));
                 cli.setNome_fant(rs.getString("nome_fant"));
                 
@@ -534,16 +566,13 @@ public Cliente buscarFisica(Cliente cli ) {
         try {
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt = connection
-                    .prepareStatement("UPDATE cliente set nome=?, tipo=?, email=?, ddd=?, num_telefone=?, nome_fant=?, cnpj=? where cod_cliente=?");
+                    .prepareStatement("UPDATE cliente set nome=?, tipo=?, nome_fant=?, cnpj=? where cod_cliente=?");
             pstmt.setString(1, cliente.getNome());
            pstmt.setInt(2, 2);
            
-           pstmt.setString(3, cliente.getEmail());
-           pstmt.setString(4, cliente.getDdd());
-           pstmt.setString(5, cliente.getNum_telefone());
-           pstmt.setString(6, cliente.getNome_fant());
-           pstmt.setString(7, cliente.getCnpj());
-            pstmt.setInt(8, cliente.getCod_cliente()); 
+           pstmt.setString(3, cliente.getNome_fant());
+           pstmt.setString(4, cliente.getCnpj());
+            pstmt.setInt(5, cliente.getCod_cliente()); 
             pstmt.execute();
             JOptionPane.showMessageDialog(null, "Cliente alterado.");
             connection.close();
@@ -557,21 +586,18 @@ public Cliente buscarFisica(Cliente cli ) {
         try {
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt = connection
-                    .prepareStatement("UPDATE cliente set nome=?,tipo=?, email=?, ddd=?, num_telefone=?, sobrenome=?, cpf=?, rg=?, sexo=?, data_nasc=?, est_civ=?, profissao=? where cod_cliente=?");
+                    .prepareStatement("UPDATE cliente set nome=?,tipo=?, sobrenome=?, cpf=?, rg=?, sexo=?, data_nasc=?, est_civ=?, profissao=? where cod_cliente=?");
             pstmt.setString(1, cliente.getNome());
            pstmt.setInt(2, 1);
            
-           pstmt.setString(3, cliente.getEmail());
-           pstmt.setString(4, cliente.getDdd());
-           pstmt.setString(5, cliente.getNum_telefone());
-           pstmt.setString(6, cliente.getSobrenome());
-           pstmt.setString(7, cliente.getCpf());
-           pstmt.setString(8, cliente.getRg());
-           pstmt.setInt(9, cliente.getSexo().getId());
-           pstmt.setDate(10, cliente.getData_nasc());
-           pstmt.setString(11, cliente.getEst_civ());
-           pstmt.setString(12, cliente.getProfissao());
-           pstmt.setInt(13, cliente.getCod_cliente()); 
+           pstmt.setString(3, cliente.getSobrenome());
+           pstmt.setString(4, cliente.getCpf());
+           pstmt.setString(5, cliente.getRg());
+           pstmt.setInt(6, cliente.getSexo().getId());
+           pstmt.setDate(7, cliente.getData_nasc());
+           pstmt.setString(8, cliente.getEst_civ());
+           pstmt.setString(9, cliente.getProfissao());
+           pstmt.setInt(10, cliente.getCod_cliente()); 
             pstmt.execute();
             JOptionPane.showMessageDialog(null, "Cliente alterado.");
             connection.close();
@@ -712,4 +738,21 @@ public Cliente buscarFisica(Cliente cli ) {
         }
    return validador;
    }
+ 
+ public String buscaPorCEP(String cep){
+     Connection connection = null;
+     String cidade = null;
+     try{
+         connection = ConnectionFactory.getConnection();
+         PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM cep where cep =?;");
+         pstmt.setString(1, cep);
+         ResultSet rs = pstmt.executeQuery();
+         while(rs.next()){
+             cidade = rs.getString("cidade");
+         } 
+     }catch(SQLException e){
+         e.printStackTrace();
+     }
+     return cidade;
+ }
 }

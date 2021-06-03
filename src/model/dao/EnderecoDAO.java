@@ -226,9 +226,9 @@ public Endereco buscarEnderecoCliente(Endereco end ) {
         try {
             connection = ConnectionFactory.getConnection();
             PreparedStatement pstmt;
-            pstmt = connection.prepareStatement("SELECT * FROM endereco where cod_end_cli = ?");
+            pstmt = connection.prepareStatement("SELECT * FROM endereco where cod_end = ?");
             
-            pstmt.setInt(1, end.getCod_end_cli().getCod_cliente());
+            pstmt.setInt(1, end.getCod_end());
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                end.setCod_end(rs.getInt("cod_end"));
